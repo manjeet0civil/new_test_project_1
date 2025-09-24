@@ -1,13 +1,13 @@
-const API_KEY="5ef09fce2ebc479595d9f88686241451";
-const url="https://newsapi.org/v2/everything?q=";
+// const API_KEY="5ef09fce2ebc479595d9f88686241451";
+// const url="https://newsapi.org/v2/everything?q=";
 
 
-window.addEventListener("load",  () =>  fetchNews("India"));
+// window.addEventListener("load",  () =>  fetchNews("India"));
 
-function reload() {
-    window.location.reload();
+// function reload() {
+//     window.location.reload();
 
-}
+// }
 
 // async function fetchNews(query) {
 //     const res=await   fetch(`${url}${query}&apiKey=${API_KEY}`)
@@ -16,23 +16,52 @@ function reload() {
 
 // }
 
+// async function fetchNews(query) {
+//     const url = `YOUR_API_URL${query}`;
+//     try {
+//         const response = await fetch(url);
+//         const data = await response.json();
+        
+//         // Check if data and articles exist before calling forEach
+//         if (data && data.articles) {
+//             bindData(data.articles);
+//         } else {
+//             console.error('No articles found in the response');
+//             // Handle empty state - maybe show a message to the user
+//             document.getElementById('cards-container').innerHTML = '<p>No news articles found</p>';
+//         }
+//     } catch (error) {
+//         console.error('Error fetching news:', error);
+//         // Handle error state
+//         document.getElementById('cards-container').innerHTML = '<p>Error loading news</p>';
+//     }
+// }
+
+const API_KEY = "5ef09fce2ebc479595d9f88686241451";
+const url = "https://newsapi.org/v2/everything?q=";
+
+window.addEventListener("load", () => fetchNews("India"));
+
+function reload() {
+    window.location.reload();
+}
+
 async function fetchNews(query) {
-    const url = `YOUR_API_URL${query}`;
     try {
-        const response = await fetch(url);
+        const response = await fetch(`${url}${encodeURIComponent(query)}&apiKey=${API_KEY}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         
-        // Check if data and articles exist before calling forEach
         if (data && data.articles) {
             bindData(data.articles);
         } else {
             console.error('No articles found in the response');
-            // Handle empty state - maybe show a message to the user
             document.getElementById('cards-container').innerHTML = '<p>No news articles found</p>';
         }
     } catch (error) {
         console.error('Error fetching news:', error);
-        // Handle error state
         document.getElementById('cards-container').innerHTML = '<p>Error loading news</p>';
     }
 }
@@ -109,3 +138,4 @@ searchButton.addEventListener("click",()=>{
     curSelectedNav=null;
 
 })
+
