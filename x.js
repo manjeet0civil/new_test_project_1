@@ -37,8 +37,8 @@
 //     }
 // }
 
-const API_KEY = "5ef09fce2ebc479595d9f88686241451";
-const url = "https://newsapi.org/v2/everything?q=";
+const API_KEY ="5ef09fce2ebc479595d9f88686241451";
+const url ="https://newsapi.org/v2/everything?q=";
 
 window.addEventListener("load", () => fetchNews("India"));
 
@@ -138,4 +138,5 @@ searchButton.addEventListener("click",()=>{
     curSelectedNav=null;
 
 })
+
 
